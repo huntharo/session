@@ -75,7 +75,7 @@ var defer = typeof setImmediate === 'function'
  * @param {String} [options.name=connect.sid] Session ID cookie name
  * @param {Boolean} [options.proxy]
  * @param {Boolean} [options.resave] Resave unmodified sessions back to the store
- * @param {Boolean} [options.touchAtMaxAgeRatio] `.touch()` session when `maxAge` has reached `.touchAtMaxAgeRatio` of the `originalMaxAge`
+ * @param {Boolean} [options.touchAtMaxAgeRatio] `store.touch()` session when `maxAge` has reached `touchAtMaxAgeRatio` of `cookie.maxAge`
  * @param {Boolean} [options.rolling] Enable/disable rolling session expiration
  * @param {Boolean} [options.saveUninitialized] Save uninitialized sessions to the store
  * @param {String|Array} [options.secret] Secret for signing session ID

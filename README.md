@@ -231,6 +231,22 @@ you can safely set `resave: false`. If it does not implement the `touch`
 method and your store sets an expiration date on stored sessions, then you
 likely need `resave: true`.
 
+##### touchAtMaxAgeRatio
+
+With `resave: false`, only writes the updated session expiration time back to the
+session store (via `store.touch()`) when session when `maxAge` has reached
+`touchAtMaxAgeRatio` of `cookie.maxAge`.
+
+For example, settiong `touchAtMaxAgeRatio: 0.75` would cause the session to be
+updated at 75% of the `cookie.maxAge` value.  1 million requests for a
+single session with 1 year initial `maxAge` would then write to the session store
+approximately 4 times in a year instead of 1 million times in a year.
+
+This reduces writes to the session store substantially.  This is beneficial
+when using infrequently modified sessions with long `maxAge` values, particularly
+when using a store that has a higher cost for writes than reads (e.g. DynamoDB
+or globally replicated stores).
+
 ##### rolling
 
 Force the session identifier cookie to be set on every response. The expiration
